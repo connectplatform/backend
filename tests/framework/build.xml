@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="test-framework" basedir=".">
+
+    <target name="git_update_submodules">
+        <exec executable="git" dir="${basedir}" failonerror="false">
+            <arg value="submodule"/>
+            <arg value="update"/>
+            <arg value="--init"/>
+            <arg value="--recursive"/>
+        </exec>
+    </target>
+
+    <target name="update" depends="git_update_submodules">
+        <exec executable="git" dir="${basedir}/im-protocol" failonerror="false">
+            <arg value="checkout"/>
+            <arg value="master"/>
+        </exec>
+        <property name="map.path" value="${basedir}/data/map.json"/>
+        <exec executable="ant" dir="${basedir}/im-protocol" failonerror="true">
+            <arg value="generate"/>
+        </exec>
+        <delete file="${map.path}"/>
+        <copy file="${basedir}/im-protocol/maps/json/Map.json" tofile="${map.path}"/>
+    </target>
+</project>

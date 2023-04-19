@@ -1,0 +1,148 @@
+body {
+  background-color: #f7f8f9;
+  color: #6b7c93;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.StripeElement {
+  background-color: white;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+#card-element {
+  margin-top: 8px;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  text-decoration: none;
+  color: #fff;
+  background: #32325d;
+  white-space: nowrap;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 14px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  float: left;
+  margin-top: 10px;
+  width: 100%;
+}
+button:disabled {
+  opacity: 0.7;
+}
+
+button:enabled:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+  background-color: #43458b;
+}
+
+#loader-wrapper {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.order-info {
+  color: #32325d;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+#form-error {
+  display: none;
+  background-color: #cc0000;
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+#successful-payment {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h3 {
+  border-bottom: 1px solid #32325d;
+  font-weight: 300;
+  line-height: 2;
+}
+
+.product-section {
+  background-color: white;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.product-heading, .product-info {
+  display: flex;
+}
+
+#product-price {
+  margin: 8px auto auto;
+  font-size: 0.7em;
+  min-width: 56px;
+  text-align: right;
+}
+
+.total-price {
+  text-align: right;
+  color: #000000bd;
+}
+
+#quantity {
+  margin-left: auto;
+}
+#product-name {
+  font-weight: 900;
+}
+#product-description {
+  font-weight: 300;
+  margin-top: 7px;
+  font-size: small;
+}
+.weight-light {
+  font-weight: 100;
+}
+.card-label {
+  font-weight: 300;
+}

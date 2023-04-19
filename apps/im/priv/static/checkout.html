@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:title" content="Secured Payment Page" />
+  <meta property="og:image" content="http://cdn.onlinewebfonts.com/svg/img_457430.png">
+  <link rel="stylesheet" href="/static/css/checkout.css" />
+</head>
+<body>
+  <div id="loader-wrapper">
+    <img src="/static/img/spinner.gif" width="48" />
+  </div>
+
+  <div id="successful-payment">
+    <h3>Success!</h3>
+    <p>Your payment was successfully processed</p>
+    <button style="max-width: 50%" onclick="window.close()">OK</button>
+  </div>
+
+  <form action="/api/service" method="post" id="payment-form">
+    <h3>Checkout</h3>
+    <div>
+      <div class="form-row product-section">
+        <div class="product-heading">
+          <div id="product-name" class="order-info"></div>
+          <div id="quantity" class="order-info weight-light"></div>
+        </div>
+        <div class="product-info">
+          <div id="product-description"></div>
+          <div id="product-price" class="order-info"></div>
+        </div>
+      </div>
+      <div class="form-row total-price">Total:&nbsp;<span id="total-price"></span></div>
+    </div>
+    <div class="form-row">
+      <label class="card-label" for="card-element">
+        Credit or debit card
+      </label>
+      <div id="card-element" class="weight-light"></div>
+      <div id="card-errors" role="alert"></div>
+    </div>
+    <div id="form-error" class="form-row">This is error</div>
+    <button id="submit-button" disabled>Submit Payment</button>
+  </form>
+  <script src="/sm/erlb.js"></script>
+  <script src="/sm/smoothie.js"></script>
+  <script src="/static/modules/hydratorNew.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="/static/js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "bots": [
+    {"name":"Wiki Bot","username":"wiki","type":1,"descr":"Search articles in Wikipedia","accessToken":"Fnj8e26CaaneN9v52rgBZxjT","photo":"https:\/\/vignette.wikia.nocookie.net\/simpsons\/images\/d\/dd\/Wikipedia-logo.svg.png\/revision\/latest?cb=20100610161747","thumb":"https:\/\/vignette.wikia.nocookie.net\/simpsons\/images\/d\/dd\/Wikipedia-logo.svg.png\/revision\/latest?cb=20100610161747","isInline":1,"webhookUrl":"http:\/\/localhost:2301"},
+    {"name":"Weather Bot","username":"weather","type":1,"descr":"Current weather and forecast","accessToken":"QBRVf65jHmx9SnEeQAxQTDZK","photo":"https:\/\/www.iosicongallery.com\/icons\/weather-2017-06-19\/512.png","thumb":"https:\/\/www.iosicongallery.com\/icons\/weather-2017-06-19\/512.png","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2300"},
+    {"name":"Task Bot","username":"task","type":2,"descr":"","accessToken":"7r2cS77xe5m7sg27Baf36gaY","photo":"","thumb":"","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2305"},
+    {"name":"DealerDirect Bot","username":"dealerdirect","type":2,"descr":"","accessToken":"cFvJajcuFaEZH4HL2eN4rmcs","photo":"","thumb":"","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2303"},
+    {"name":"RealEstate Bot","username":"realestate","type":2,"descr":"","accessToken":"uu575k9NqWqxmzn4","photo":"","thumb":"","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2306"},
+    {"name":"Reggie Bot","type":1,"username":"reggie","descr":"I'm your personal assistant","accessToken":"3d2zxBfYXNvUfa8k52RXeYaG","photo":"https:\/\/pbs.twimg.com\/profile_images\/720135322223312896\/WS3etv24.jpg","thumb":"https:\/\/pbs.twimg.com\/profile_images\/720135322223312896\/WS3etv24.jpg","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2302"},
+    {"name":"Support Bot","username":"support","type":2,"descr":"","accessToken":"36yUR6yE3dhen7CzWr2Tkuh6","photo":"","thumb":"","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2304"},
+    {"name":"Note Bot","username":"note","type":2,"descr":"","accessToken":"aUy24NxyCa7AynYSR9hAvEY9","photo":"","thumb":"","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2307"},
+    {"name":"Emily Bot","username":"emily","type":2,"descr":"","accessToken":"Cpb9m2ELRaYG3zVyK2vVC2rX","photo":"","thumb":"","roles":["super_admin"],"webhookUrl":"http:\/\/localhost:2308"}
+  ]
+}

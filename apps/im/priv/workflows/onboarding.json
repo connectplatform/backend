@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "target": "user",
+  "attributes": [
+    "deviceId",
+    "deviceName",
+    "os"
+  ],
+  "requiredAttributes": ["deviceId", "deviceName", "os"],
+  "startSteps": ["filledPhone"],
+  "steps": [
+    {
+      "name": "filledPhone",
+      "allowedSteps": ["confirmedPhone"]
+    },
+    {
+      "name": "confirmedPhone",
+      "allowedSteps": ["filledProfile"]
+    },
+    {
+      "name": "filledProfile",
+      "allowedSteps": ["profiled"]
+    },
+    {
+      "name": "profiled",
+      "allowedSteps": ["ended"]
+    }
+  ]
+}

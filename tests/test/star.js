@@ -1,0 +1,66 @@
+module.exports = p => {
+	p
+	.connect('user1')
+	.then()
+	.send('user1', 'Message', global.entityHelper.generateMessage(map.MessageFeedType.chat, '000000000000000000000002', 'Message 1'), response => { p.set('messageId1', response.message.id) })
+	.send('user1', 'Message', global.entityHelper.generateMessage(map.MessageFeedType.chat, '000000000000000000000002', 'Message 2'), response => { p.set('messageId2', response.message.id) })
+	.send('user1', 'Message', global.entityHelper.generateMessage(map.MessageFeedType.chat, '000000000000000000000002', 'Message 3'), response => { p.set('messageId3', response.message.id) })
+	.send('user1', 'Message', global.entityHelper.generateMessage(map.MessageFeedType.chat, '000000000000000000000002', 'Message 4'), response => { p.set('messageId4', response.message.id) })
+  .send('user1', 'Message', global.entityHelper.generateMessage(map.MessageFeedType.chat, '000000000000000000000002', 'Message 5'), response => { p.set('messageId5', response.message.id) })
+  .then()
+  .send('user1', 'GetStarred', {}, response => {
+    p.equals(response.modelName, 'GetStarredResp')
+    p.equals(response.messages.length, 0)
+    p.equals(response.total, 0)
+  })
+  .then()
+  .send('user1', 'Star', {messageIds: [get('messageId1'), get('messageId2'), get('messageId3')], star: true}, response => {
+    p.equals(response.modelName, 'StarResp')
+  })
+  .then()
+  .send('user1', 'GetStarred', {}, response => {
+    p.equals(response.modelName, 'GetStarredResp')
+    p.equals(response.messages.length, 3)
+    p.equals(response.messages[0].id, get('messageId1'))
+    p.equals(response.messages[0].payload, 'Message 1')
+    p.equals(response.messages[1].id, get('messageId2'))
+    p.equals(response.messages[2].id, get('messageId3'))
+    p.equals(response.total, 3)
+  })
+  .then()
+  .send('user1', 'Star', {messageIds: [get('messageId5')], star: true}, response => {
+    p.equals(response.modelName, 'StarResp')
+  })
+  .then()
+  .send('user1', 'GetStarred', {}, response => {
+    p.equals(response.modelName, 'GetStarredResp')
+    p.equals(response.messages.length, 4)
+    p.equals(response.messages[0].id, get('messageId1'))
+    p.equals(response.messages[1].id, get('messageId2'))
+    p.equals(response.messages[2].id, get('messageId3'))
+    p.equals(response.messages[3].id, get('messageId5'))
+    p.equals(response.total, 4)
+  })
+  .then()
+  .send('user1', 'Star', {messageIds: [get('messageId1'), get('messageId2')], star: false}, response => {
+    p.equals(response.modelName, 'StarResp')
+  })
+  .then()
+  .send('user1', 'GetStarred', {}, response => {
+    p.equals(response.modelName, 'GetStarredResp')
+    p.equals(response.messages.length, 2)
+    p.equals(response.messages[0].id, get('messageId3'))
+    p.equals(response.messages[1].id, get('messageId5'))
+    p.equals(response.total, 2)
+  })
+  .then()
+  .send('user1', 'Star', {messageIds: [get('messageId3'), get('messageId5')], star: false}, response => {
+    p.equals(response.modelName, 'StarResp')
+  })
+  .then()
+  .send('user1', 'GetStarred', {}, response => {
+    p.equals(response.modelName, 'GetStarredResp')
+    p.equals(response.messages.length, 0)
+    p.equals(response.total, 0)
+  })
+}

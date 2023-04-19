@@ -1,0 +1,6 @@
+[submodule "tools/summit"]
+	path = tools/summit
+	url = git@git.connect.software:Connect.Core/translations.git
+[submodule "tools/im-protocol"]
+	path = tools/im-protocol
+	url = git@git.connect.software:Connect.Core/protocol.git

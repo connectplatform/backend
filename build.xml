@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="backend" default="deploy" basedir=".">
+    <target name="update_asn">
+        <!-- Generate -->
+        <exec executable="ant" dir="${basedir}/tools/im-protocol" failonerror="true">
+            <arg value="generate"/>
+        </exec>
+        <exec executable="erlc" dir="${basedir}" failonerror="true">
+            <arg value="-o"/>
+            <arg value="apps/im/include"/>
+            <arg value="tools/im-protocol/priv/IM.asn1"/>
+        </exec>
+
+        <!-- Cleanup -->
+        <delete>
+            <fileset dir="apps/im/include">
+                <exclude name=".gitkeep"/>
+                <exclude name="im_*.hrl"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false">
+            <fileset dir="apps/im/include/generated">
+                <exclude name=".gitkeep"/>
+            </fileset>
+        </delete>
+        <delete dir="${basedir}/tests/protocols" failonerror="false"/>
+        <delete file="${basedir}/apps/im/src/im_atoms.erl" failonerror="false"/>
+        <delete file="${basedir}/apps/im/priv/static/data/map.json" failonerror="false"/>
+
+        <!-- Copy files -->
+        <mkdir dir="${basedir}/tests/protocols"/>
+
+        <copy file="${basedir}/tools/im-protocol/maps/erlang/constants.hrl" tofile="${basedir}/apps/im/include/generated/IM_const.hrl" overwrite="true"/>
+        <copy file="${basedir}/tools/im-protocol/maps/erlang/records_versioned.hrl" tofile="${basedir}/apps/im/include/generated/IM.hrl" overwrite="true"/>
+
+        <copy todir="${basedir}/tests/protocols" flatten="true">
+            <fileset dir="${basedir}/tools/im-protocol/maps/json/versions">
+                <include name="**/*.json"/>
+            </fileset>
+        </copy>
+
+        <!-- <copy file="${basedir}/tools/im-protocol/maps/json/versions/**" tofile="${basedir}/tests/protocols" overwrite="true"/> -->
+
+        <copy file="${basedir}/tools/im-protocol/maps/json/Map.json" tofile="${basedir}/apps/im/priv/static/data/map.json" overwrite="true"/>
+        <copy file="${basedir}/tools/im-protocol/maps/atoms/atoms.erl" tofile="${basedir}/apps/im/src/im_atoms.erl" overwrite="true" verbose="true">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="atoms" to="im_atoms"/>
+                </tokenfilter>
+            </filterchain>
+        </copy>
+    </target>
+
+    <target name="update_translations">
+        <exec executable="./clear-build" dir="${basedir}/tools/summit" />
+        <exec executable="${basedir}/tools/summit/summit.phar" dir="${basedir}" failonerror="false">
+            <arg value="common:compile-translation-files"/>
+        </exec>
+        <exec executable="${basedir}/tools/summit/summit.phar" dir="${basedir}" failonerror="false">
+            <arg value="common:erlang-distribute"/>
+        </exec>
+    </target>
+</project>

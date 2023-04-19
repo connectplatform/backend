@@ -1,0 +1,109 @@
+[
+  {smoothie, [
+    {protocol, http},
+    {ranch, [{port, 5000}]},
+    {cowboy, [
+      {nb_acceptors, 100},
+      {protocol, [{compress, false}]}
+    ]}
+  ]},
+
+  {cocktail, [
+    {backend, ctail_mongo},
+    {schema, [im_entities]},
+    {mongo, [
+      {connection, [
+        {host, <<"{{app}}mongo:27017">>},
+        {database, <<"connect">>},
+        {w_mode, safe}
+      ]},
+      {pool, [{size, 10}, {max_overflow, 20}]}
+    ]}
+  ]},
+
+  {erlastic_search, [
+    {host, <<"{{app}}elastica">>},
+    {port, 9200}
+  ]},
+
+  {im, [
+    {use_directory, false},
+
+    {url, "{{url}}"},
+    {web_url, "{{web_url}}"},
+
+    {rtc_url, "{{app}}rtc:3477"},
+    {apn_url, "{{app}}apn:4873"},
+    {og_url, "{{app}}og:4875"},
+
+    {env, "prod"},
+
+    {fcm_server_key, "{{fcm_server_key}}"},
+
+    {app_id, "{{app_id}}"},
+    {crawler_secret, "{{crawler_secret}}"},
+
+    {s3_url_prefix, "{{im.filestore.s3.url_prefix}}"},
+    {s3_bucket_name, "{{im.filestore.s3.bucket_name}}"},
+    {s3_access_key, "{{im.filestore.s3.access_key}}"},
+    {s3_secret_key, "{{im.filestore.s3.secret_key}}"},
+    {s3_remote_dir, "{{im.filestore.s3.remote_dir}}"},
+    {s3_region, "{{im.filestore.s3.region}}"},
+
+    {priv_folder, "priv"},
+
+    {filestore, {{im.filestore.provider}}},  % `local` | `s3`
+
+    {filestore_local_path, "/data"},
+
+    {smtp_relay, <<"{{im.smtp.relay}}">>},
+    {smtp_username, <<"{{im.smtp.username}}">>},
+    {smtp_password, <<"{{im.smtp.password}}">>},
+
+    {nexmo_alphaname,  "{{sms.alphaname}}"},
+    {nexmo_from,       "{{sms.nexmo.from}}"},
+    {nexmo_api_key,    "{{sms.nexmo.apikey}}"},
+    {nexmo_api_secret, "{{sms.nexmo.apisecret}}"},
+
+    {twilio_alphaname,  "{{sms.alphaname}}"},
+    {twilio_from,       "{{sms.twilio.from}}"},
+    {twilio_sid,        "{{sms.twilio.sid}}"},
+    {twilio_auth_token, "{{sms.twilio.auth_token}}"},
+
+    {thailand_group_code, "{{sms.thailand.group_code}}"},
+    {thailand_token,      "{{sms.thailand.token}}"},
+
+    {alphasms_alphaname, "{{sms.alphaname}}"},
+    {alphasms_package_key, "{{sms.alphasms.package_key}}"}
+  ]},
+
+  {lager, [
+    {handlers, [
+      {lager_console_backend, {{lager.level}}},
+      {graylog_lager_udp_backend, [
+        {host, "116.203.122.210"},
+        {port, 12201},
+        {level, {{lager.level}}},
+        {format_config, [
+          {hostname, <<"{{app}}">>},
+          {compression, disabled},
+          {extra_fields, [
+            {<<"service">>, <<"backend">>}
+          ]}
+        ]}
+      ]}
+    ]},
+    {error_logger_redirect, true},
+    {error_logger_hwm, 500},
+    {async_threshold, 150},
+    {async_threshold_window, 5}
+  ]},
+
+  {sasl, [
+    {sasl_error_logger, false}
+  ]},
+
+  {ssl, [
+    {session_lifetime, 600}
+  ]}
+].

@@ -1,0 +1,23 @@
+test:
+  script:
+    # build
+    - ant update_asn
+    # - ant update_translations
+    - rebar3 as test clean
+    - rebar3 as test compile
+
+    # run
+    - rebar3 as test shell &
+    - nc -l -p 5000 &
+    - timeout 15 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:5000)" != "200" ]]; do sleep 1; done'
+    - cd tests
+    - cp config/config.json.template config/config.json
+    - node test.js
+
+before_script:
+  - eval $(ssh-agent -s)
+  - ssh-add /opt/ci/ssh/id_rsa
+
+after_script:
+  - sudo kill $(pidof nc)
+  - sudo kill $(pidof rebar3)

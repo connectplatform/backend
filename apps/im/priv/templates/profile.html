@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ name }}</title>
+        <meta property="og:title" content="{{ name }}" />
+        {% if thumbnail %}
+          <meta property="og:image" content="{{ thumbnail }}" />
+        {% endif %}
+        {% if bio %}
+          <meta property="og:description" content="{{ bio }}" />
+        {% endif %}
+    </head>
+    <body style="text-align: center;">
+        {% if thumbnail %}
+          <img src="{{ thumbnail }}" style="width: 156px; height: 156px; border-radius: 78px;" />
+        {% else %}
+          <script>
+            const hashCode = name => {
+              let hash = 0, i, chr;
+              if (!name || !name.hasOwnProperty('length')) {
+                return 0;
+              }
+              if (name.length === 0) {
+                return hash;
+              }
+              for (let i = 0; i < name.length; i++) {
+                chr = name.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0;
+              }
+              return Math.abs(hash);
+            };
+
+            const id = '{{ id }}';
+            const name = '{{ name }}';
+            const colours = ["#D32F2F", "#C2185B", "#7B1FA2", "#D50000", "#C51162", "#AA00FF", "#512DA8", "#303F9F", "#1976D2", "#6200EA", "#304FFE", "#2962FF", "#0288D1", "#0097A7", "#00796B", "#0091EA", "#00B8D4", "#00BFA5", "#388E3C", "#689F38", "#AFB42B", "#00C853", "#64DD17", "#64DD17", "#AEEA00", "#FBC02D", "#FFA000", "#F57C00", "#E64A19", "#5D4037", "#616161", "#455A64"];
+
+            const nameArr = name.split(" ");
+            const initials = !nameArr.length ? '' : (
+              nameArr.length > 1 ?
+                nameArr[0].charAt(0).toUpperCase() + nameArr[1].charAt(0).toUpperCase() :
+                nameArr[0].charAt(0).toUpperCase()
+            );
+
+            const colour = hashCode(id) % colours.length;
+
+            const html = `<div style="width: 156px; height: 156px; border-radius: 78px; background-color: ${colours[colour]}; font-size: 5em; line-height: 2em; color: #fff; text-align: center; font-family: Verdana, Geneva, sans-serif; margin: 0 auto;">${initials}</div>`;
+            document.write(html);
+          </script>
+        {% endif %}
+        <h1 style="font-family: Arial, Helvetica, sans-serif; font-size: 2.5em; color: #999;">{{ name }}</h1>
+        {% if bio %}
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; color: #333;">
+          {{ bio }}
+        </p>
+        {% endif %}
+    </body>
+</html>

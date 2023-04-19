@@ -1,0 +1,29 @@
+{
+  "name": "im-test",
+  "version": "0.0.1",
+  "description": "Test for Websocket server",
+  "main": "test.js",
+  "scripts": {
+    "test": "node test.js",
+    "all": "RUN_ALL=1 node test.js",
+    "contacts": "SKIP_MAIN=1 RUN_CONTACTS=1 node test.js",
+    "elastica": "SKIP_MAIN=1 RUN_ELASTICA=1 node test.js",
+    "cms": "SKIP_MAIN=1 RUN_CMS=1 node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "~6.5.3",
+    "@angular/core": "^8.2.9",
+    "@webcobra/transponder": "0.3.11",
+    "@webcobra/transponder-node-polyfill": "0.0.10",
+    "js-md5": "^0.7.3",
+    "moment": "^2.10.3",
+    "request": "2.63.0",
+    "sync": "0.2.5",
+    "tape": "^4.0.0",
+    "underscore": "^1.8.3",
+    "util": "0.10.3",
+    "websocket": "^1.0.19"
+  }
+}

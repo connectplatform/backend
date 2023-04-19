@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"connect_test.im_localized_store"},{"v":2,"key":{"location":"2dsphere"},"name":"i_location_2dsphere","ns":"connect_test.im_localized_store","2dsphereIndexVersion":3}],"uuid":"48f9bf3ea2f14ad5a027c97b6d34a4dd"}

@@ -1,0 +1,11 @@
+{
+  "host": "localhost:5000",
+  "dbName": "connect_test",
+  "debug": false,
+  "elastic_search": {
+    "host": "localhost",
+    "port": 9200,
+    "index": "users",
+    "doc": "user"
+  }
+}
